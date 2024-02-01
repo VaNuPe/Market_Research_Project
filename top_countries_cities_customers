@@ -1,0 +1,63 @@
+-- SQL query to identify the top 10 countries for Rockbuster in terms of customer numbers
+
+SELECT D.country,					
+	COUNT(customer_id) AS total_customers				
+FROM customer A					
+INNER JOIN address B ON A.address_id = B.address_id					
+INNER JOIN city C ON B.city_id = C.city_id					
+INNER JOIN country D ON C.country_id = D.country_id					
+GROUP BY country					
+ORDER BY COUNT(customer_id) DESC					
+LIMIT 10					
+
+-- SQL query to identify the top 10 cities that fall withinh the top 10 countries identified in step 1
+					
+WITH top_ten_countries AS (
+  SELECT D.country,	
+		C.city,
+		COUNT(customer_id) AS total_customers				
+	FROM customer A					
+	INNER JOIN address B ON A.address_id = B.address_id					
+	INNER JOIN city C ON B.city_id = C.city_id					
+	INNER JOIN country D ON C.country_id = D.country_id					
+	GROUP BY country, city					
+	ORDER BY COUNT(customer_id) DESC
+	LIMIT 10
+)
+
+SELECT country,						
+	city,					
+	total_customers	
+FROM top_ten_countries
+ORDER BY total_customers DESC;
+
+-- SQL query to identify the top 5 customers from the top 10 cities identified in step 2
+
+WITH top_ten_cities AS(
+	SELECT D.country,	
+		C.city,
+		COUNT(customer_id) AS total_customers				
+	FROM customer A				
+	INNER JOIN address B ON A.address_id = B.address_id				
+	INNER JOIN city C ON B.city_id = C.city_id				
+	INNER JOIN country D ON C.country_id = D.country_id				
+	GROUP BY country, city				
+	ORDER BY COUNT(customer_id) DESC				
+	LIMIT 10				
+)
+
+SELECT A.customer_id,					
+	A.first_name,				
+	A.last_name,				
+	C.city,				
+	D.country,				
+	SUM(E.amount) AS total_amount_paid				
+FROM customer A
+INNER JOIN address B ON A.address_id = B.address_id
+INNER JOIN city C ON B.city_id = C.city_id
+INNER JOIN country D ON C.country_id = D.country_id
+INNER JOIN payment E ON A.customer_id = E.customer_id
+WHERE (D.country, C.city) IN (SELECT country, city FROM top_ten_cities)
+GROUP BY A.customer_id, A.first_name, A.last_name, C.city, D.country
+ORDER BY total_amount_paid DESC
+LIMIT 5;
