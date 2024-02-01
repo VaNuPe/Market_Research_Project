@@ -1,0 +1,11 @@
+SELECT				
+	cat.name,			
+	SUM(pay.amount) AS sales_revenue		
+FROM film flm				
+INNER JOIN film_category flmc ON flm.film_id = flmc.film_id				
+INNER JOIN category cat ON flmc.category_id = cat.category_id				
+INNER JOIN inventory inv ON flm.film_id = inv.film_id				
+INNER JOIN rental ren ON inv.inventory_id = ren.inventory_id				
+INNER JOIN payment pay ON ren.rental_id = pay.rental_id				
+GROUP BY cat.name				
+ORDER BY sales_revenue DESC;
