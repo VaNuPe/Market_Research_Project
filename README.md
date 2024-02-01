@@ -20,6 +20,7 @@ they expect data-driven answers to be used for their company strategy.
 ## Data
 - [Rockbuster data set](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
 - [Data Dictionary](docs/Data_Dictionary.pdf)
+- I am referencing a [document](Data_Dictionary.pdf)
 
 ## Presentation for the business managers
 [Presentation](docs/Presenting_SQL_Results_to_Management_Board.pdf) with insights and recommendations for the Management Board.
