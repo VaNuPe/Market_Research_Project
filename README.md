@@ -19,10 +19,10 @@ they expect data-driven answers to be used for their company strategy.
 
 ## Data
 - [Rockbuster data set](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
-- [Data Dictionary](doc/Data_Dictionary.pdf)
+- [Data Dictionary](docs/Data_Dictionary.pdf)
 
 ## Presentation for the business managers
-[Presentation](doc/Presenting_SQL_Results_to_Management_Board.pdf) with insights and recommendations for the Management Board.
+[Presentation](docs/Presenting_SQL_Results_to_Management_Board.pdf) with insights and recommendations for the Management Board.
   
 ## Tableau Report
 The visualizations of this project are available in my [Tableau Profile](https://github.com/VaNuPe/Market_Research_Project/assets/131813866/4a1f42c7-7a56-4dcb-bbb6-6309e9e98ddb).
