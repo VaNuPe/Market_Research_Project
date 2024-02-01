@@ -18,11 +18,11 @@ they expect data-driven answers to be used for their company strategy.
 - Do sales figures vary between geographic regions?
 
 ## Data
-[Rockbuster data set](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
-[Data Dictionary](Data%20Dictionary.pdf)
+- [Rockbuster data set](http://www.postgresqltutorial.com/wp-content/uploads/2019/05/dvdrental.zip)
+- [Data Dictionary](Data%20Dictionary.pdf)
 
 ## Presentation for the business managers
-You will find a copy of the final presentation summa with the insights and recommendations for the Management Board in the document "Presenting_SQL_Results_to_Management_Board".
+[Final presentation](Presenting_SQL_Results_to_Management_Board.pdf) with the insights and recommendations for the Management Board.
   
 ## Tableau Report
 The visualizations of this project are available in my [Tableau Profile](https://github.com/VaNuPe/Market_Research_Project/assets/131813866/4a1f42c7-7a56-4dcb-bbb6-6309e9e98ddb).
