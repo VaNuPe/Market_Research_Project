@@ -1,0 +1,31 @@
+WITH customer_revenues_cte AS 					
+	(				
+    SELECT cus.customer_id,					
+           SUM(pay.amount) AS total_amount_paid					
+    FROM payment pay					
+    JOIN customer cus ON pay.customer_id = cus.customer_id					
+    GROUP BY cus.customer_id					
+	),				
+top_10_customers_cte AS 					
+	(				
+    SELECT customer_id,					
+           total_amount_paid,					
+           RANK() OVER (ORDER BY total_amount_paid DESC) AS customer_rank					
+    FROM customer_revenues_cte					
+	)				
+SELECT 					
+	cus.customer_id,				
+	cus.first_name,				
+  cus.last_name,					
+  cit.city,					
+	cou.country,				
+	SUM(pay.amount) AS total_amount_paid				
+FROM top_10_customers_cte cte					
+INNER JOIN customer cus ON cte.customer_id = cus.customer_id					
+INNER JOIN address ad ON cus.address_id = ad.address_id					
+INNER JOIN city cit ON ad.city_id = cit.city_id					
+INNER JOIN country cou ON cit.country_id = cou.country_id					
+INNER JOIN payment pay ON cte.customer_id = pay.customer_id					
+WHERE cte.customer_rank <= 10					
+GROUP BY cus.customer_id, cit.city, cou.country, cte.customer_rank
+ORDER BY total_amount_paid DESC;					
