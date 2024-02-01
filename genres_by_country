@@ -1,0 +1,16 @@
+SELECT 				
+	SUM(pay.amount) AS sales_revenue, 			
+	cat.name, 			
+	cou.country			
+FROM payment pay				
+INNER JOIN rental ren ON pay.rental_id = ren.rental_id				
+INNER JOIN inventory inv ON ren.inventory_id = inv.inventory_id				
+INNER JOIN film flm ON inv.film_id = flm.film_id				
+INNER JOIN film_category flmc ON flm.film_id = flmc.film_id				
+INNER JOIN category cat ON flmc.category_id = cat.category_id			
+INNER JOIN customer cus ON ren.customer_id = cus.customer_id				
+INNER JOIN address ad ON cus.address_id = ad.address_id				
+INNER JOIN city cit ON ad.city_id = cit.city_id				
+INNER JOIN country cou ON cit.country_id = cou.country_id				
+GROUP BY cat.name, cou.country				
+ORDER BY sales_revenue DESC;		
